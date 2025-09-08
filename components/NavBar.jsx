@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { HiMenu } from "react-icons/hi";
 
-export const NavBar = ({ scrollToRef, refs, navigationItems}) => {
+export const NavBar = ({ sendWhatsappMessage, scrollToRef, refs, navigationItems}) => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     return <nav className="sticky top-0 z-50 w-full bg-white shadow-md">
         <div className="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 py-4">
@@ -25,7 +25,7 @@ export const NavBar = ({ scrollToRef, refs, navigationItems}) => {
                         {item}
                     </span>
                 ))}
-                <button className="bg-primary text-white px-8 py-3 rounded-lg font-semibold text-sm hover:bg-primary/90 transition-colors">
+                <button onClick={() => sendWhatsappMessage("enroll")} className="bg-primary cursor-pointer text-white px-8 py-3 rounded-lg font-semibold text-sm hover:bg-primary/90 transition-colors">
                     Enroll Now
                 </button>
             </div>

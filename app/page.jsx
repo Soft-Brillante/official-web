@@ -41,6 +41,11 @@ export default function HomePage() {
             const waLink = `https://wa.me/${contact_info.number.replaceAll(" ", "")}?text=${encodeURIComponent(message)}`;
             window.open(waLink, "_blank");
         }
+        if(type == "enroll") {
+            const message = `Hi! I'm interested to enroll in the program. Can you provide more details?`;
+            const waLink = `https://wa.me/${contact_info.number.replaceAll(" ", "")}?text=${encodeURIComponent(message)}`;
+            window.open(waLink, "_blank");
+        }
     }
 
     return (
@@ -49,7 +54,7 @@ export default function HomePage() {
             <TopBar />
 
             {/* Navbar */}
-            <NavBar navigationItems={navigationItems} refs={refs} scrollToRef={scrollToRef} />
+            <NavBar sendWhatsappMessage={sendWhatsappMessage} navigationItems={navigationItems} refs={refs} scrollToRef={scrollToRef} />
 
             {/* Hero Section */}
             <section className="relative w-full bg-gray-50" ref={refs.Home}>
