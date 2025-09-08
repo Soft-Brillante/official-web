@@ -1,13 +1,19 @@
 "use client";
 
 import Image from "next/image";
-import { FaPhoneAlt, FaEnvelope, FaFacebookF, FaInstagram, FaLinkedinIn, FaYoutube, FaUsers, FaStar, FaRegClock, FaMapMarkerAlt } from "react-icons/fa";
-import { HiMenu, HiOutlineAcademicCap } from "react-icons/hi";
-import { useRef, useState } from "react";
-import { SocialMedia } from "@/components/SocialMedia";
+import { FaUsers, FaStar, FaRegClock } from "react-icons/fa";
+import { HiOutlineAcademicCap } from "react-icons/hi";
+import { useRef } from "react";
+import { TopBar } from "@/components/TopBar";
+import { NavBar } from "@/components/NavBar";
+import { Placements } from "@/components/Placements";
+import { Footer } from "@/components/Footer";
+import { Courses } from "@/components/Courses";
+
+const navigationItems = ["Home", "Services", "Courses", "Placements", "About", "Contact"];
 
 export default function HomePage() {
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
+   
     const refs = {
         Home: useRef(null),
         Courses: useRef(null),
@@ -19,94 +25,22 @@ export default function HomePage() {
 
     const scrollToRef = (ref) => {
         if (ref.current) {
-            ref.current.scrollIntoView({ behavior: "smooth" });
+            const marginTop = -40;
+            const elementPosition = ref.current.getBoundingClientRect().top + window.pageYOffset;
+            window.scrollTo({
+                top: elementPosition + marginTop,
+                behavior: "smooth"
+            });
         }
     }
-
-    const navigationItems = ["Home", "Services", "Courses", "Placements", "About", "Contact"];
 
     return (
         <main className="flex flex-col items-center w-full">
             {/* Top bar */}
-            <header className="w-full h-10 flex items-center bg-gradient-to-r from-primary to-primary/90 text-white">
-                <div className="mx-auto w-full h-full max-w-7xl flex justify-between items-center py-3 px-4 sm:px-6">
-                    <div className="flex items-center space-x-6">
-                        <a href="tel:+919778144724" className="flex items-center gap-2 text-sm hover:text-yellow-400 transition-colors">
-                            <FaPhoneAlt size={12} />
-                            <span>+91 9778144724</span>
-                        </a>
-                        <a href="mailto:info@softbrillante.com" className="hidden md:flex items-center gap-2 text-sm hover:text-yellow-400 transition-colors">
-                            <FaEnvelope size={12} />
-                            <span>info@softbrillante.com</span>
-                        </a>
-                    </div>
-                    <div className="flex items-center space-x-3">
-                        <SocialMedia size={16} />
-                    </div>
-                </div>
-            </header>
+            <TopBar />
 
             {/* Navbar */}
-            <nav className="sticky top-0 z-50 w-full bg-white shadow-md">
-                <div className="max-w-7xl mx-auto flex justify-between items-center px-4 sm:px-6 py-4">
-                    <Image
-                        src="/logo.png"
-                        alt="Company Logo"
-                        width={140}
-                        height={140}
-                        className="w-28 sm:w-36"
-                        priority
-                    />
-
-                    <div className="hidden lg:flex items-center space-x-8">
-                        {navigationItems.map((item) => (
-                            <span
-                                key={item}
-                                onClick={() => scrollToRef(refs[item])}
-                                className="text-gray-800 hover:text-primary font-medium text-sm tracking-wide transition-colors"
-                            >
-                                {item}
-                            </span>
-                        ))}
-                        <button className="bg-primary text-white px-8 py-3 rounded-lg font-semibold text-sm hover:bg-primary/90 transition-colors">
-                            Enroll Now
-                        </button>
-                    </div>
-
-                    <button
-                        onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        className="lg:hidden p-2"
-                        aria-label="Toggle menu"
-                        aria-expanded={isMenuOpen}
-                    >
-                        <HiMenu size={28} className="text-gray-800 cursor-pointer" />
-                    </button>
-                </div>
-
-                {/* Mobile menu with dropdown animation */}
-                <div
-                    className={`${isMenuOpen
-                        ? 'max-h-[450px] opacity-100'
-                        : 'max-h-0 opacity-0'
-                        } lg:hidden overflow-hidden transition-all duration-300 ease-in-out`}
-                    aria-hidden={!isMenuOpen}
-                >
-                    <div className="flex flex-col p-6 space-y-4 bg-white border-t">
-                        {navigationItems.map((item) => (
-                            <span
-                                key={item}
-                                onClick={() => scrollToRef(refs[item])}
-                                className="text-gray-800 hover:text-primary py-2 text-sm font-medium transition-colors"
-                            >
-                                {item}
-                            </span>
-                        ))}
-                        <button className="bg-primary text-white py-3 px-6 rounded-lg font-semibold text-sm hover:bg-primary/90 transition-colors mt-2">
-                            Enroll Now
-                        </button>
-                    </div>
-                </div>
-            </nav>
+            <NavBar navigationItems={navigationItems} refs={refs} scrollToRef={scrollToRef} />
 
             {/* Hero Section */}
             <section className="relative w-full bg-gray-50" ref={refs.Home}>
@@ -227,149 +161,10 @@ export default function HomePage() {
             </section>
 
             {/* Courses Section */}
-            <section className="w-full py-20 bg-gray-50" ref={refs.Courses}>
-                <div className="max-w-7xl mx-auto px-4 sm:px-6">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl font-bold mb-6">Professional Courses</h2>
-                        <p className="text-gray-700 text-lg max-w-3xl mx-auto">
-                            Industry-validated curriculum designed to prepare you for high-growth career opportunities
-                        </p>
-                    </div>
-                    <div className="max-w-3xl mx-auto">
-                        {[
-                            {
-                                title: "MERN Stack Development",
-                                image: "/mern.png",
-                                description: "Master full-stack development with MongoDB, Express, React & Node.js",
-                                features: [
-                                    "Frontend Development with React",
-                                    "Backend Development with Node.js & Express",
-                                    "Database Management with MongoDB",
-                                    "API Development & Integration",
-                                    "Authentication & Authorization",
-                                    "Real-world Project Development"
-                                ],
-                                placementSupport: {
-                                    basic: {
-                                        duration: "6 months",
-                                        price: "₹49,999",
-                                        includes: [
-                                            "150+ hours of live training",
-                                            "Project-based learning",
-                                            "Placement support",
-                                            "Certificate of completion"
-                                        ]
-                                    },
-                                    premium: {
-                                        duration: "1 year",
-                                        price: "₹79,999",
-                                        includes: [
-                                            "300+ hours of live training",
-                                            "Advanced projects & Mentorship",
-                                            "Premium placement support",
-                                            "Certificate of completion"
-                                        ]
-                                    }
-                                }
-                            }
-                        ].map((course, index) => (
-                            <article
-                                key={index}
-                                className="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100"
-                            >
-                                <div className="relative h-40">
-                                    <Image
-                                        src={course.image}
-                                        alt={course.title}
-                                        fill
-                                        className="object-cover"
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
-                                        <h3 className="text-white text-xl font-bold p-4">{course.title}</h3>
-                                    </div>
-                                </div>
-
-                                <div className="p-6">
-                                    <p className="text-gray-600 mb-6">{course.description}</p>
-                                    
-                                    <div className="mb-8">
-                                        <h4 className="text-lg font-semibold mb-4">Placement Support Features</h4>
-                                        <ul className="grid grid-cols-1 gap-3">
-                                            {course.features.map((feature, idx) => (
-                                                <li key={idx} className="flex items-center gap-2 text-sm text-gray-700">
-                                                    <svg className="w-5 h-5 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                                    </svg>
-                                                    {feature}
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-
-                                    <div className="space-y-4">
-                                        <div className="p-4 bg-gray-50 rounded-lg">
-                                            <div className="flex justify-between items-center mb-4">
-                                                <span className="text-lg font-bold text-primary">{course.placementSupport.basic.price}</span>
-                                                <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
-                                                    {course.placementSupport.basic.duration}
-                                                </span>
-                                            </div>
-                                            <ul className="space-y-2">
-                                                {course.placementSupport.basic.includes.map((item, idx) => (
-                                                    <li key={idx} className="text-sm text-gray-600">• {item}</li>
-                                                ))}
-                                            </ul>
-                                        </div>
-
-                                        <div className="p-4 bg-primary/5 rounded-lg border-2 border-primary">
-                                            <div className="flex justify-between items-center mb-4">
-                                                <span className="text-lg font-bold text-primary">{course.placementSupport.premium.price}</span>
-                                                <span className="bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">
-                                                    {course.placementSupport.premium.duration}
-                                                </span>
-                                            </div>
-                                            <ul className="space-y-2">
-                                                {course.placementSupport.premium.includes.map((item, idx) => (
-                                                    <li key={idx} className="text-sm text-gray-600">• {item}</li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                        ))}
-                    </div>
-                </div>
-            </section>
+            <Courses refs={refs}/>
 
             {/* Placements Section */}
-            <section className="w-full py-20 bg-white" ref={refs.Placements}>
-                <div className="max-w-7xl mx-auto px-4 sm:px-6">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl font-bold mb-6">Our First Placement Coming Soon!</h2>
-                        <p className="text-gray-700 text-lg max-w-3xl mx-auto">
-                            We're excited to announce our first placement success story. Stay tuned to meet our pioneering graduate who will pave the way for future success stories.
-                        </p>
-                    </div>
-
-                    <div className="flex justify-center">
-                        <div className="bg-gray-50 p-8 rounded-2xl text-center max-w-lg">
-                            <div className="w-32 h-32 mx-auto mb-6 bg-primary/10 rounded-full flex items-center justify-center">
-                                <FaUsers className="text-primary text-4xl" />
-                            </div>
-                            <h3 className="text-xl font-bold mb-4">Who will be first?</h3>
-                            <p className="text-gray-600">
-                                Our inaugural placement story is in the making. This space will soon showcase our first success story, inspiring future tech professionals.
-                            </p>
-                            <div className="mt-8">
-                                <button className="bg-primary text-white px-8 py-3 rounded-lg font-semibold text-sm hover:bg-primary/90 transition-colors">
-                                    Join Our Program
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <Placements refs={refs} />
 
             {/* About Section */}
             <section className="w-full py-20 bg-gray-50" ref={refs.About}>
@@ -492,73 +287,7 @@ export default function HomePage() {
             </section>
 
             {/* Footer */}
-            <footer className="relative w-full bg-white text-gray-800 py-16 overflow-hidden">
-                {/* Rotated green background */}
-                <div className="absolute inset-0 -skew-y-6 bg-primary/10 -translate-y-1/2"></div>
-
-                <div className="relative max-w-7xl mx-auto px-4 sm:px-6">
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
-                        <div>
-                            <Image
-                                src="/logo.png"
-                                alt="Company Logo"
-                                width={160}
-                                height={60}
-                                className="mb-6"
-                            />
-                            <p className="text-gray-600 mb-6">
-                                Empowering careers through expert-led training and industry-aligned curriculum.
-                            </p>
-                            <div className="flex space-x-4">
-                                <SocialMedia size={18} />
-                            </div>
-                        </div>
-
-                        <div>
-                            <h3 className="text-lg font-bold mb-6">Quick Links</h3>
-                            <ul className="space-y-4">
-                                {navigationItems.map((item) => (
-                                    <li key={item}>
-                                        <span onClick={() => scrollToRef(refs[item])} className="text-gray-600 hover:text-primary transition-colors">
-                                            {item}
-                                        </span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-
-                        <div>
-                            <h3 className="text-lg font-bold mb-6">Courses</h3>
-                            <ul className="space-y-4">
-                                <li><a href="#" className="text-gray-600 hover:text-primary transition-colors">MERN Stack</a></li>
-                                <li><a href="#" className="text-gray-600 hover:text-primary transition-colors">More Soon...</a></li>
-                            </ul>
-                        </div>
-
-                        <div>
-                            <h3 className="text-lg font-bold mb-6">Contact Us</h3>
-                            <div className="space-y-4">
-                                <a href="tel:+919778144724" className="flex items-center gap-3 text-gray-600 hover:text-primary transition-colors">
-                                    <FaPhoneAlt size={16} />
-                                    <span>+91 9778144724</span>
-                                </a>
-                                <a href="mailto:info@softbrillante.com" className="flex items-center gap-3 text-gray-600 hover:text-primary transition-colors">
-                                    <FaEnvelope size={16} />
-                                    <span>info@softbrillante.com</span>
-                                </a>
-                                <div className="flex items-start gap-3 text-gray-600">
-                                    <FaMapMarkerAlt size={16} className="mt-1" />
-                                    <span>Kozhikode, Kerala, India</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="border-t border-gray-200 mt-12 pt-8 text-center text-gray-600">
-                        <p>&copy; {new Date().getFullYear()} Soft Brillante. All rights reserved.</p>
-                    </div>
-                </div>
-            </footer>
+            <Footer navigationItems={navigationItems} />
         </main>
     );
 }
