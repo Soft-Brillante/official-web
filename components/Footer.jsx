@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt } from "react-icons/fa";
 import { SocialMedia } from "./SocialMedia";
+import { contact_info } from "@/constants/contact";
 
 export const Footer = ({ navigationItems }) => {
     return <footer className="relative w-full bg-white text-gray-800 py-16 overflow-hidden">
@@ -49,17 +50,17 @@ export const Footer = ({ navigationItems }) => {
                 <div>
                     <h3 className="text-lg font-bold mb-6">Contact Us</h3>
                     <div className="space-y-4">
-                        <a href="tel:+919778144724" className="flex items-center gap-3 text-gray-600 hover:text-primary transition-colors">
+                        <a href={`tel:${contact_info.number}`} className="flex items-center gap-3 text-gray-600 hover:text-primary transition-colors">
                             <FaPhoneAlt size={16} />
-                            <span>+91 9778144724</span>
+                            <span>{contact_info.number}</span>
                         </a>
-                        <a href="mailto:info@softbrillante.com" className="flex items-center gap-3 text-gray-600 hover:text-primary transition-colors">
+                        <a href={`mailto:${contact_info.email}`} className="flex items-center gap-3 text-gray-600 hover:text-primary transition-colors">
                             <FaEnvelope size={16} />
-                            <span>info@softbrillante.com</span>
+                            <span>{contact_info.email}</span>
                         </a>
                         <div className="flex items-start gap-3 text-gray-600">
                             <FaMapMarkerAlt size={16} className="mt-1" />
-                            <span>Kozhikode, Kerala, India</span>
+                            <span>{contact_info.address}</span>
                         </div>
                     </div>
                 </div>

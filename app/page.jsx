@@ -9,6 +9,7 @@ import { NavBar } from "@/components/NavBar";
 import { Placements } from "@/components/Placements";
 import { Footer } from "@/components/Footer";
 import { Courses } from "@/components/Courses";
+import { contact_info } from "@/constants/contact";
 
 const navigationItems = ["Home", "Services", "Courses", "Placements", "About", "Contact"];
 
@@ -31,6 +32,14 @@ export default function HomePage() {
                 top: elementPosition + marginTop,
                 behavior: "smooth"
             });
+        }
+    }
+
+    const sendWhatsappMessage = type => {
+        if (type == "demo") {
+            const message = `Hi! I'm interested to attend a demo class. Can you provide more details?`;
+            const waLink = `https://wa.me/${contact_info.number.replaceAll(" ", "")}?text=${encodeURIComponent(message)}`;
+            window.open(waLink, "_blank");
         }
     }
 
@@ -57,10 +66,10 @@ export default function HomePage() {
                                 Comprehensive industry-aligned curriculum with dedicated placement support
                             </p>
                             <div className="flex flex-wrap justify-center lg:justify-start gap-6">
-                                <button className="bg-primary text-white px-10 py-4 rounded-xl font-semibold text-sm hover:bg-primary/90 transition-colors">
+                                <button onClick={() => scrollToRef(refs.Courses)} className="bg-primary cursor-pointer text-white px-10 py-4 rounded-xl font-semibold text-sm hover:bg-primary/90 transition-colors">
                                     Explore Courses
                                 </button>
-                                <button className="bg-white border-2 border-primary text-primary px-10 py-4 rounded-xl font-semibold text-sm hover:bg-primary/5 transition-colors">
+                                <button onClick={() => sendWhatsappMessage("demo")} className="bg-white cursor-pointer border-2 border-primary text-primary px-10 py-4 rounded-xl font-semibold text-sm hover:bg-primary/5 transition-colors">
                                     Schedule Demo
                                 </button>
                             </div>
@@ -207,7 +216,82 @@ export default function HomePage() {
                 </div>
             </section>
 
+            {/* Our Team Section */}
+            <section className="w-full py-20 bg-white">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6">
+                    <div className="text-center mb-16">
+                        <h2 className="text-3xl font-bold mb-6">Meet Our Team</h2>
+                        <p className="text-gray-700 text-lg max-w-3xl mx-auto">
+                            Our experienced team of industry experts and mentors are dedicated to helping you succeed
+                        </p>
+                    </div>
 
+                    <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {[
+                            {
+                                name: "John Smith",
+                                role: "Lead Instructor",
+                                image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=800&h=800&auto=format&fit=crop",
+                                description: "10+ years of experience in full-stack development and teaching"
+                            },
+                            {
+                                name: "Sarah Johnson", 
+                                role: "Technical Mentor",
+                                image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=800&h=800&auto=format&fit=crop",
+                                description: "Specialized in cloud computing and DevOps practices"
+                            },
+                            {
+                                name: "Michael Chen",
+                                role: "Career Coach", 
+                                image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&h=800&auto=format&fit=crop",
+                                description: "Expert in tech recruitment and career development"
+                            },
+                            {
+                                name: "Emily Davis",
+                                role: "Course Coordinator",
+                                image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=800&h=800&auto=format&fit=crop", 
+                                description: "Manages curriculum development and student success"
+                            },
+                            {
+                                name: "David Wilson",
+                                role: "Industry Expert",
+                                image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800&h=800&auto=format&fit=crop",
+                                description: "Brings real-world project experience to our programs"
+                            },
+                            {
+                                name: "Lisa Anderson",
+                                role: "Student Success Manager",
+                                image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=800&h=800&auto=format&fit=crop",
+                                description: "Dedicated to ensuring positive learning outcomes"
+                            }
+                        ].map((member, index) => (
+                            <div
+                                key={index}
+                                className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+                            >
+                                <div className="relative h-80 w-full overflow-hidden">
+                                    <Image
+                                        src={member.image}
+                                        alt={member.name}
+                                        fill
+                                        className="object-cover group-hover:scale-110 transition-transform duration-300"
+                                    />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                                </div>
+                                <div className="relative p-6 bg-white">
+                                    <div className="absolute -top-8 left-6 bg-primary text-white px-4 py-2 rounded-lg shadow-md">
+                                        <p className="font-medium text-sm">{member.role}</p>
+                                    </div>
+                                    <h3 className="text-xl font-bold text-gray-900 mt-4 mb-3">{member.name}</h3>
+                                    <p className="text-gray-600 text-sm leading-relaxed">{member.description}</p>
+                                    
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+            
             {/* Contact Section */}
             <section className="w-full py-20 bg-white" ref={refs.Contact}>
                 <div className="max-w-7xl mx-auto px-4 sm:px-6">

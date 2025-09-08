@@ -1,7 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: ["cdn-kmhen.nitrocdn.com"]
+        remotePatterns: [{
+            protocol: "https",
+            hostname: "cdn-kmhen.nitrocdn.com"
+        }, {
+            protocol: "https",
+            hostname: "images.unsplash.com"
+        }]
     }
 };
 
