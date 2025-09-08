@@ -60,14 +60,13 @@ export default function HomePage() {
 
                     <div className="hidden lg:flex items-center space-x-8">
                         {navigationItems.map((item) => (
-                            <a
+                            <span
                                 key={item}
-                                href={`#${item.toLowerCase()}`}
                                 onClick={() => scrollToRef(refs[item])}
                                 className="text-gray-800 hover:text-primary font-medium text-sm tracking-wide transition-colors"
                             >
                                 {item}
-                            </a>
+                            </span>
                         ))}
                         <button className="bg-primary text-white px-8 py-3 rounded-lg font-semibold text-sm hover:bg-primary/90 transition-colors">
                             Enroll Now
@@ -94,13 +93,13 @@ export default function HomePage() {
                 >
                     <div className="flex flex-col p-6 space-y-4 bg-white border-t">
                         {navigationItems.map((item) => (
-                            <a
+                            <span
                                 key={item}
-                                href={`#${item.toLowerCase()}`}
+                                onClick={() => scrollToRef(refs[item])}
                                 className="text-gray-800 hover:text-primary py-2 text-sm font-medium transition-colors"
                             >
                                 {item}
-                            </a>
+                            </span>
                         ))}
                         <button className="bg-primary text-white py-3 px-6 rounded-lg font-semibold text-sm hover:bg-primary/90 transition-colors mt-2">
                             Enroll Now
@@ -520,9 +519,9 @@ export default function HomePage() {
                             <ul className="space-y-4">
                                 {navigationItems.map((item) => (
                                     <li key={item}>
-                                        <a href={`#${item.toLowerCase()}`} className="text-gray-600 hover:text-primary transition-colors">
+                                        <span onClick={() => scrollToRef(refs[item])} className="text-gray-600 hover:text-primary transition-colors">
                                             {item}
-                                        </a>
+                                        </span>
                                     </li>
                                 ))}
                             </ul>
