@@ -1,113 +1,106 @@
 import Image from "next/image";
 
 export const Courses = ({ refs }) => {
-    return <section className="w-full py-20 bg-gray-50" ref={refs.Courses}>
+    return <section className="w-full py-20 bg-gradient-to-b from-gray-50 to-white" ref={refs.Courses}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="text-center mb-16">
-                <h2 className="text-3xl font-bold mb-6">Professional Courses</h2>
-                <p className="text-gray-700 text-lg max-w-3xl mx-auto">
+                <h2 className="text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-600">
+                    Professional Courses
+                </h2>
+                <p className="text-gray-700 text-lg max-w-3xl mx-auto leading-relaxed">
                     Industry-validated curriculum designed to prepare you for high-growth career opportunities
                 </p>
             </div>
-            <div className="max-w-3xl mx-auto">
+            <div className="max-w-5xl mx-auto">
                 {[
                     {
-                        title: "MERN Stack Development",
+                        title: "Full Stack Development Program",
                         image: "/mern.png",
-                        description: "Master full-stack development with MongoDB, Express, React & Node.js",
+                        description: "Comprehensive full-stack development program covering MERN stack, MySQL, Next.js, and DSA with industry-oriented curriculum",
                         features: [
-                            "Frontend Development with React",
-                            "Backend Development with Node.js & Express",
-                            "Database Management with MongoDB",
-                            "API Development & Integration",
-                            "Authentication & Authorization",
-                            "Real-world Project Development"
+                            "MERN Stack (MongoDB, Express, React, Node.js)",
+                            "MySQL Database Integration", 
+                            "Next.js Framework Development",
+                            "Data Structures & Algorithms",
+                            "Project Management (Agile, Waterfall)",
+                            "One-on-One Mentoring",
+                            "Industry-Oriented Curriculum",
+                            "Adaptive Learning Approach",
+                            "Project-Driven Training"
                         ],
-                        placementSupport: {
-                            basic: {
-                                duration: "6 months",
-                                price: "₹49,999",
-                                includes: [
-                                    "150+ hours of live training",
-                                    "Project-based learning",
-                                    "Placement support",
-                                    "Certificate of completion"
-                                ]
-                            },
-                            premium: {
-                                duration: "1 year",
-                                price: "₹79,999",
-                                includes: [
-                                    "300+ hours of live training",
-                                    "Advanced projects & Mentorship",
-                                    "Premium placement support",
-                                    "Certificate of completion"
-                                ]
-                            }
+                        program: {
+                            duration: "8 months",
+                            price: <><span className="line-through text-gray-400">₹80,000</span> <span className="ml-2">₹60,000</span></>,
+                            includes: [
+                                "Comprehensive MERN Stack Training",
+                                "MySQL & Next.js Integration",
+                                "DSA Fundamentals & Practice", 
+                                "Real-world Project Development",
+                                "One-on-One Mentoring Sessions",
+                                "Industry Expert Sessions",
+                                "Agile & Waterfall Methodology Training",
+                                "Placement Assistance"
+                            ]
                         }
                     }
                 ].map((course, index) => (
                     <article
                         key={index}
-                        className="bg-white rounded-xl overflow-hidden shadow-lg border border-gray-100"
+                        className="bg-white rounded-2xl overflow-hidden shadow-xl border border-gray-100 hover:shadow-2xl transition-shadow duration-300"
                     >
-                        <div className="relative h-40">
+                        <div className="relative h-48 sm:h-56 md:h-64">
                             <Image
                                 src={course.image}
                                 alt={course.title}
                                 fill
                                 className="object-cover"
+                                priority
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
-                                <h3 className="text-white text-xl font-bold p-4">{course.title}</h3>
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent flex items-end">
+                                <h3 className="text-white text-2xl font-bold p-6">{course.title}</h3>
                             </div>
                         </div>
 
-                        <div className="p-6">
-                            <p className="text-gray-600 mb-6">{course.description}</p>
+                        <div className="p-6 md:p-8">
+                            <p className="text-gray-600 text-lg mb-8">{course.description}</p>
 
                             <div className="mb-8">
-                                <h4 className="text-lg font-semibold mb-4">Placement Support Features</h4>
-                                <ul className="grid grid-cols-1 gap-3">
+                                <h4 className="text-xl font-semibold mb-6 text-gray-800">Program Features</h4>
+                                <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     {course.features.map((feature, idx) => (
-                                        <li key={idx} className="flex items-center gap-2 text-sm text-gray-700">
-                                            <svg className="w-5 h-5 text-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                                            </svg>
+                                        <li key={idx} className="flex items-center gap-3 text-gray-700 group">
+                                            <span className="flex-shrink-0 w-6 h-6 rounded-full bg-primary/10 group-hover:bg-primary/20 flex items-center justify-center transition-colors duration-200">
+                                                <svg className="w-4 h-4 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                                                </svg>
+                                            </span>
                                             {feature}
                                         </li>
                                     ))}
                                 </ul>
                             </div>
 
-                            <div className="space-y-4">
-                                <div className="p-4 bg-gray-50 rounded-lg">
-                                    <div className="flex justify-between items-center mb-4">
-                                        <span className="text-lg font-bold text-primary">{course.placementSupport.basic.price}</span>
-                                        <span className="bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-medium">
-                                            {course.placementSupport.basic.duration}
+                            <div className="p-6 bg-gradient-to-br from-primary/5 to-blue-50 rounded-xl border-2 border-primary/20 hover:border-primary/30 transition-colors duration-300">
+                                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                                    <div className="flex flex-col">
+                                        <span className="text-sm text-gray-500 mb-1">Course Fee</span>
+                                        <span className="text-2xl font-bold text-primary">{course.program.price}</span>
+                                    </div>
+                                    <div className="flex flex-col items-end">
+                                        <span className="text-sm text-gray-500 mb-1">Duration</span>
+                                        <span className="bg-primary text-white px-4 py-2 rounded-full text-sm font-medium">
+                                            {course.program.duration}
                                         </span>
                                     </div>
-                                    <ul className="space-y-2">
-                                        {course.placementSupport.basic.includes.map((item, idx) => (
-                                            <li key={idx} className="text-sm text-gray-600">• {item}</li>
-                                        ))}
-                                    </ul>
                                 </div>
-
-                                <div className="p-4 bg-primary/5 rounded-lg border-2 border-primary">
-                                    <div className="flex justify-between items-center mb-4">
-                                        <span className="text-lg font-bold text-primary">{course.placementSupport.premium.price}</span>
-                                        <span className="bg-primary text-white px-3 py-1 rounded-full text-sm font-medium">
-                                            {course.placementSupport.premium.duration}
-                                        </span>
-                                    </div>
-                                    <ul className="space-y-2">
-                                        {course.placementSupport.premium.includes.map((item, idx) => (
-                                            <li key={idx} className="text-sm text-gray-600">• {item}</li>
-                                        ))}
-                                    </ul>
-                                </div>
+                                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                                    {course.program.includes.map((item, idx) => (
+                                        <li key={idx} className="flex items-center text-sm text-gray-700">
+                                            <span className="mr-2 text-primary">•</span>
+                                            {item}
+                                        </li>
+                                    ))}
+                                </ul>
                             </div>
                         </div>
                     </article>

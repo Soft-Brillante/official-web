@@ -4,7 +4,7 @@ import { SocialMedia } from "./SocialMedia";
 import { contact_info } from "@/constants/contact";
 
 export const Footer = ({ navigationItems }) => {
-    return <footer className="relative w-full bg-white text-gray-800 py-16 overflow-hidden">
+    return <footer className="relative w-full bg-white text-gray-800 pt-16 pb-5 overflow-hidden">
         {/* Rotated green background */}
         <div className="absolute inset-0 -skew-y-6 bg-primary/10 -translate-y-1/2"></div>
 

@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { FaUsers, FaStar, FaRegClock } from "react-icons/fa";
-import { HiOutlineAcademicCap } from "react-icons/hi";
+// import { FaUsers, FaStar, FaRegClock } from "react-icons/fa";
+// import { HiOutlineAcademicCap } from "react-icons/hi";
 import { useRef } from "react";
 import { TopBar } from "@/components/TopBar";
 import { NavBar } from "@/components/NavBar";
@@ -62,7 +62,7 @@ export default function HomePage() {
                     <div className="grid lg:grid-cols-2 gap-16 items-center">
                         <div className="space-y-8 text-center lg:text-left">
                             <span className="inline-block bg-primary/10 text-primary px-4 py-3 rounded-full text-sm font-semibold">
-                                "Building Tomorrow's Tech Leaders Today"
+                                "Your shortcut to boss mode"
                             </span>
                             <h1 className="text-3xl lg:text-5xl font-bold text-gray-900 leading-tight">
                                 Transform Your Career Through Expert-Led Training
@@ -96,7 +96,7 @@ export default function HomePage() {
             </section>
 
             {/* Stats Section */}
-            <section className="w-full py-20 bg-white">
+            {/* <section className="w-full py-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6">
                     <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
                         {[
@@ -116,7 +116,7 @@ export default function HomePage() {
                         ))}
                     </div>
                 </div>
-            </section>
+            </section> */}
 
             {/* Services Section */}
             <section className="w-full py-20 bg-gray-50" ref={refs.Services}>
@@ -222,7 +222,7 @@ export default function HomePage() {
             </section>
 
             {/* Our Team Section */}
-            <section className="w-full py-20 bg-white">
+            {/* <section className="w-full py-20 bg-white">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl font-bold mb-6">Meet Our Team</h2>
@@ -295,7 +295,7 @@ export default function HomePage() {
                         ))}
                     </div>
                 </div>
-            </section>
+            </section> */}
             
             {/* Contact Section */}
             <section className="w-full py-20 bg-white" ref={refs.Contact}>
@@ -376,6 +376,11 @@ export default function HomePage() {
             </section>
 
             {/* Footer */}
+
+            <div className="fixed p-4 rounded-full z-1 bottom-2 right-2">
+                <img src="/whatsapp.png" className="cursor-pointer" alt="Whatsapp" onClick={() => sendWhatsappMessage("enroll")}/>
+            </div>
+
             <Footer navigationItems={navigationItems} />
         </main>
     );
