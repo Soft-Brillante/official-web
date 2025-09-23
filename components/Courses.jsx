@@ -16,6 +16,8 @@ export const Courses = ({ refs }) => {
                     {
                         title: "Full Stack Development Program",
                         image: "/mern.png",
+                        og_price: "₹79,999",
+                        discount_price: "₹59,999",
                         description: "Comprehensive full-stack development program covering MERN stack, MySQL, Next.js, and DSA with industry-oriented curriculum",
                         features: [
                             "MERN Stack (MongoDB, Express, React, Node.js)",
@@ -30,7 +32,6 @@ export const Courses = ({ refs }) => {
                         ],
                         program: {
                             duration: "8 months",
-                            price: <><span className="line-through text-gray-400">₹80,000</span> <span className="ml-2">₹60,000</span></>,
                             includes: [
                                 "Comprehensive MERN Stack Training",
                                 "MySQL & Next.js Integration",
@@ -84,9 +85,10 @@ export const Courses = ({ refs }) => {
                                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
                                     <div className="flex flex-col">
                                         <span className="text-sm text-gray-500 mb-1">Course Fee</span>
-                                        <span className="text-2xl font-bold text-primary">{course.program.price}</span>
+                                        <span className="text-2xl font-bold text-primary"><span className="line-through text-gray-400">{course.og_price}</span> <span className="ml-2">{course.discount_price}</span></span>
+                                        
                                     </div>
-                                    <div className="flex flex-col items-end">
+                                    <div className="flex flex-col items-start sm:items-end">
                                         <span className="text-sm text-gray-500 mb-1">Duration</span>
                                         <span className="bg-primary text-white px-4 py-2 rounded-full text-sm font-medium">
                                             {course.program.duration}
